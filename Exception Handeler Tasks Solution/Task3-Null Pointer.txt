@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class index {
+	/*
+Task 3: Null Pointer
+Create a method that calls toUpperCase() on a string. Pass null and handle NullPointerException.
+	 * */
+
+	public static String getUpperCase( String p_txt) {
+		return p_txt.toUpperCase();
+	}
+	
+	public static void main(String[] args) {
+
+			Scanner scn = new Scanner(System.in);
+			System.out.println("Please Enter Your name");
+			String name = scn.nextLine();
+			if (name.isEmpty()) {
+			    name = null; 
+			}
+
+			try {
+				name = getUpperCase(name);
+				System.out.println("Welcome " + name);
+			}catch(NullPointerException e) {
+				System.out.println("you have provided empty name " + e.getMessage());
+			}
+
+		
+	}
+
+}

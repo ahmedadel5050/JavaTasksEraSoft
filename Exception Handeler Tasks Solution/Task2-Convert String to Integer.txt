@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class index {
+	/*
+	 * Task 2: Convert String to Integer
+Ask user to enter a number in a String,  convert it to int, and handle NumberFormatException.
+	 * */
+		
+	public static void main(String[] args) {
+
+			int num1;
+			String txt;
+
+			Scanner scn = new Scanner(System.in);
+			System.out.println("please enter num1");
+			txt = scn.next();
+
+			// Convert String to int
+	        try {
+	            num1 = Integer.parseInt(txt);
+	            System.out.println("Converted number: " + num1);
+	        } catch (NumberFormatException e) {
+	            System.out.println("Invalid number");
+	        }
+
+
+		
+	}
+
+}

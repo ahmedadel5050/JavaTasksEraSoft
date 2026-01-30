@@ -1,0 +1,49 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+
+public class index {
+	/*
+Task 6: Multiple Catch Blocks
+Write a program that may throw both NullPointerException and ArithmeticException. 
+Use multiple catch blocks.
+	 * */
+
+	   public static String getUpperCase(String p_txt) {
+	        // This will throw NullPointerException if p_txt is null
+	        return p_txt.toUpperCase();
+	    }
+	
+	public static void main(String[] args) {
+
+		  Scanner scn = new Scanner(System.in);
+
+	        System.out.println("Please enter your name ");
+	        String name = scn.nextLine();
+	        if (name.isEmpty()) {
+			    name = null; 
+			}
+
+
+	        System.out.println("Please enter a number to calculate");
+	        int number = scn.nextInt();
+
+	        try {
+	            name = getUpperCase(name);
+	            System.out.println("Welcome " + name);
+
+	            // May throw ArithmeticException if number == 0
+	            int result = 100 / number;
+	            System.out.println("100 / " + number +" = " + result);
+
+	        } catch (NullPointerException e) {
+	            System.out.println("You provided an empty name.");
+	        } catch (ArithmeticException e) {
+	            System.out.println(" Division by zero is not allowed.");
+	        }
+
+	        
+		
+	}
+
+}

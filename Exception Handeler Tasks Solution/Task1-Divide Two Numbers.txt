@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class index {
+	/*
+	 * Task 1: Divide Two Numbers
+	Ask user for two integers. Divide them and handle ArithmeticException (e.g., divide by zero).
+	 * */
+		
+	public static void main(String[] args) {
+		try {
+			int num1 = 0, num2 = 0 ;
+			int res = 0;
+			Scanner scn = new Scanner(System.in);
+			System.out.println("please enter First Number");
+			num1 = scn.nextInt();
+			
+			System.out.println("please enter Second Number");
+			num2 = scn.nextInt();
+			
+			res = num1 / num2;
+			System.out.println("Results is " + res );			
+		}catch(ArithmeticException e) {
+			System.out.println("Error : " +  e.getMessage() );
+		}
+		
+	}
+
+}

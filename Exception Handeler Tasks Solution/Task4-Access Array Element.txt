@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class index {
+	/*
+Task 4: Access Array Element
+Create an array of 5 elements. 
+Ask user to enter an index and print the value. Handle ArrayIndexOutOfBoundsException.
+
+	 * */
+
+	
+	public static void main(String[] args) {
+
+		int[] ids =new int[5];
+		Scanner scn = new Scanner(System.in);
+		System.out.println("Please Enter an Index");
+		int idx = scn.nextInt();
+		try {
+		System.out.println("Value = " + ids[idx]);
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Invalid Index " + e.getMessage()) ;
+		}
+		
+		
+	}
+
+}

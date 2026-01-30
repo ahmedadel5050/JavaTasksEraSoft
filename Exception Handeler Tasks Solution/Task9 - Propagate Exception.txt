@@ -1,0 +1,37 @@
+
+
+public class index {
+/*
+Task 9: Propagate Exception
+Create a method that throws an exception and another method that calls it. Demonstrate how exceptions propagate.
+ */
+    // Method1  explicitly throw an exception
+    public static void Method1() {
+        System.out.println("Inside Method1...");
+        int result = 50 / 0; 
+        System.out.println("Result: " + result); // never printed
+    }
+
+    // Method2 that calls Method1 but does not handle the previous exception
+    public static void Method2() {
+        System.out.println("Inside Method2...");
+        Method1(); // exception propagates up to Method1
+        System.out.println("End of Method2"); // never printed if exception raised
+    }
+
+    
+    
+	public static void main(String[] args) {
+
+		 System.out.println("Program started...");
+	        try {
+	        	Method2(); // exception propagates up to main
+	        } catch (ArithmeticException ex) {
+	            System.out.println("Caught exception in main: " + ex);
+	        }
+	        System.out.println("Program continues after handling exception.");
+
+		
+	}
+
+}

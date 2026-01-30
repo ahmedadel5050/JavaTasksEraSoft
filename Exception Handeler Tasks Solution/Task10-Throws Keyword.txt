@@ -1,0 +1,34 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class index {
+	/*
+Task 10: Throws Keyword
+Create a method readFile() that throws IOException. Call it from main() using try-catch.
+	 * */
+
+	 public static void readFile() throws IOException {
+	        // Trying to open a file that may not exist
+		     FileReader fr = new FileReader("D:\\myFile.txt"); 
+	        BufferedReader br = new BufferedReader(fr);
+	        String line = br.readLine();
+	        System.out.println("First line: " + line);
+	        br.close();
+	    }
+
+	
+	public static void main(String[] args) {
+
+		try {
+            readFile();
+        } catch (IOException e) {
+            System.out.println("IOException is: " + e.getMessage());
+        }
+
+        System.out.println("Program continues after handling exception.");
+        
+        
+	}
+
+}

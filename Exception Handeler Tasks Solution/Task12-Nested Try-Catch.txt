@@ -1,0 +1,29 @@
+public class index {
+	/*
+Task 12: Nested Try-Catch
+Use nested try-catch blocks where inner block causes ArithmeticException and outer catches it.
+	 * */
+
+	public static void main(String[] args) {
+
+		try {
+            System.out.println("Outer try block starts here");
+
+            try {
+                System.out.println("Inner try block starts here");
+                int result = 10 / 0; 
+                System.out.println("Result: " + result);
+            } catch (NullPointerException e) {
+                System.out.println("Inner catch: NullPointerException caught.");
+            }
+
+            System.out.println("Outer try block continues");
+
+        } catch (ArithmeticException e) {
+            System.out.println("Outer catch: ArithmeticException caught -> " + e);
+        }
+
+		
+	}
+
+}

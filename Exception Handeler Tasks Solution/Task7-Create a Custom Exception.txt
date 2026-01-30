@@ -1,0 +1,43 @@
+
+public class InvalidAgeException extends Exception {
+
+	private String message;
+	
+	public InvalidAgeException (String message){
+		super(message);
+	}
+
+	
+}
+
+
+
+
+import java.util.Scanner;
+
+public class index {
+	/*
+Task 7: Create a Custom Exception
+Create a custom exception InvalidAgeException. If user age < 18, throw the exception.
+	 * */
+
+	public static void main(String[] args) {
+
+
+	        try {
+	    		Scanner scn = new Scanner(System.in);
+	    		System.out.println("Please Enter your Age");
+	    	        int age = scn.nextInt();
+	    	        if (age < 5 ) {
+	    	        	throw new InvalidAgeException("Invalid Age");
+	    	        }else {
+	    	        	System.out.println("Your age is " + age);
+	    	        }
+	        }catch(InvalidAgeException ex ) {
+	        	System.err.println("Error " + ex.getMessage());
+	        		        
+	        	}
+		
+	}
+
+}
