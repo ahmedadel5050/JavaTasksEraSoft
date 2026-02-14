@@ -1,0 +1,39 @@
+/*Task 4 : 
+ *  Create two threads. Make the main thread wait for them to finish using join()
+ * */
+
+public class Main {
+	public static void main(String[] args) {
+		Thread thread1 = new parallelRuns("Thread 1");
+		thread1.start();
+
+		Thread thread2 = new parallelRuns("Thread 2");
+		thread2.start();
+		
+		try {
+			thread1.join();
+			thread2.join();
+		} catch (InterruptedException e) {
+			System.out.println("InterruptedException");
+		}
+		System.out.println("print form Main Thread");
+	}
+}
+
+//---------------------------------------------------------
+
+public class parallelRuns extends Thread{
+	private String curName ;
+	
+	public parallelRuns(String name){
+		this.curName = name;
+	}
+	
+	@Override	
+	public void run() {
+
+		System.out.println("Curren Thread Object : " + curName);
+
+	}
+}
+

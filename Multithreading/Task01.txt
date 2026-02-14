@@ -1,0 +1,23 @@
+/*Task 1 : 
+ * Create a class that extends Thread, override run() method, and print "Hello from thread". Start the thread.
+ * */
+
+public class Main {
+	public static void main(String[] args) {
+		Thread thread1 = new parallelRuns();
+		thread1.start();
+
+	}
+}
+
+//------------------------------------
+
+
+public class parallelRuns extends Thread{
+
+	@Override	
+	public void run() {
+		System.out.println("Hello from thread");
+	}
+}
+

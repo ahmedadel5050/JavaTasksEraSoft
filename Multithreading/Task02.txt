@@ -1,0 +1,23 @@
+/*Task 2 : 
+ * Create a class that implements Runnable and prints the current thread name and a message
+ * */
+
+public class Main {
+	public static void main(String[] args) {
+		parallelRuns pr = new parallelRuns();
+		Thread thread1 = new Thread (pr);
+		
+		thread1.start();
+
+	}
+}
+
+//---------------------------------------
+public class parallelRuns implements Runnable{
+
+	@Override	
+	public void run() {
+		System.out.println( Thread.currentThread().getName() );
+		System.out.println("Hello from thread");
+	}
+}
