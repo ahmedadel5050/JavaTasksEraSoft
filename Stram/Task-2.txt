@@ -1,0 +1,20 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Objects;
+
+/*Find names starting with a specific letter from a list of strings.*/
+
+public class Main {
+    public static void main(String[] args){
+    	List<String> names = Arrays.asList("Ali", "Mona", "Ahmed", "Sara", "Amr", "Laila", 
+    			                          "Kareem", "Nada", "Nour", "Samy", "", null);
+
+        List<String> sNames = names.stream()
+                                   .filter(Objects::nonNull)     
+                                   .filter(name -> !name.isEmpty())   
+        							.map(String::toUpperCase)  
+                                   .filter(name -> name.startsWith("S")) 
+                                   .collect(Collectors.toList());
+
+        System.out.println("Names starting with S: " + sNames);

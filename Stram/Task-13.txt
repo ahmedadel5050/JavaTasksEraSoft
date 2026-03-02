@@ -1,0 +1,15 @@
+import java.util.List;
+import java.util.OptionalDouble;
+import java.util.Arrays;
+
+/*Task 13 : Calculate the average of a list of doubles */
+
+public class Main {
+	public static void main(String[] args) {
+		List<Double> numbers = Arrays.asList(10.5, 5.2, 3.1, 7.3, 2.5, 10.2, 5.3, 8.9, 9.7, 0.1, -3.5, 4.6);
+
+        OptionalDouble average = numbers.stream().mapToDouble(Double::doubleValue).average();                      
+        System.out.println("Average: " + average.getAsDouble());
+
+	}
+}

@@ -1,0 +1,32 @@
+import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.Objects;;
+
+/*Task 5 : Remove duplicate elements from a list using distinct().*/
+
+public class Main {
+    public static void main(String[] args){
+        List<Integer> numbers = Arrays.asList(10, 5, 3, 7, 2, 10, 5, 8, 9, 0, -3, 4);
+
+        List<Integer> distinctNumbers = numbers.stream()
+                                             .distinct()
+                                             .collect(Collectors.toList());
+
+        System.out.println("Unique Numbers: " + distinctNumbers);
+ 
+        
+        
+        List<String> names = Arrays.asList("Ali", "Mona", "Ahmed", "Sara", "Amr",
+                "Laila", "Kareem", "Nada", "Nour",
+                "Samy", "", null);
+        List<String> distinctNames = names.stream()
+                                        .filter(Objects::nonNull)      
+                                        .filter(name -> !name.isEmpty()) 
+                                        .distinct()                    
+                                        .collect(Collectors.toList());
+
+        System.out.println("Unique Names: " + distinctNames);       
+      
+    }
+}

@@ -1,0 +1,29 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+/*Task 30 : Partition students into pass/fail groups based on grade */
+
+public class Main {
+	public static void main(String[] args) {
+		List<Student> students = Arrays.asList(
+	            new Student("Ali", "IT", 85),
+	            new Student("Mona", "CS", 92),
+	            new Student("Ahmed", "IT", 60),
+	            new Student("Sara", "CS", 70),
+	            new Student("Omar", "IS", 45),
+	            new Student("Laila", "IS", 78)
+	        );
+
+	        Map<Boolean, List<Student>> partitioned = students.stream().collect(Collectors.partitioningBy(s -> s.getGrade() >= 55));
+
+	        System.out.println("----Passed Students------");
+	        partitioned.get(true).forEach(s -> System.out.println("  " + s.getName() + " - " + s.getGrade()));
+
+	        System.out.println("----Failed Students----");
+	        partitioned.get(false).forEach(s -> System.out.println("  " + s.getName() + " - " + s.getGrade()));
+
+
+	}
+}

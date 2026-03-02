@@ -1,0 +1,15 @@
+import java.util.List;
+import java.util.Arrays;
+
+/*Task 14 : Multiply all integers in a list together using reduce */
+
+public class Main {
+	public static void main(String[] args) {
+	       List<Integer> numbers = Arrays.asList(10, 5, 3, 7, 2, 10, 5, 8, 9, 0, -3, 4);
+	        int malt = numbers.stream().reduce(1, (a, b) -> a * b);
+
+	        System.out.println("multiplications of nums: " + malt);
+
+
+	}
+}

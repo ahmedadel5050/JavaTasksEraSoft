@@ -1,0 +1,24 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+/*Task 28 : Find duplicate elements in a list of integers. */
+
+public class Main {
+	public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(10, 5, 3, 7, 2, 10, 5, 8, 9, 0, -3, 4);
+
+
+        Set<Integer> seen = new HashSet<>();
+        Set<Integer> duplicates = numbers.stream()
+                                         .filter(n -> !seen.add(n))
+                                         .collect(Collectors.toSet());
+
+        System.out.println(duplicates);
+
+		            
+
+	}
+}

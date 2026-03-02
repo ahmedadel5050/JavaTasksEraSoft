@@ -1,0 +1,24 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+/*Task 21 : Flatten a list of lists into a single list */
+
+public class Main {
+	public static void main(String[] args) {
+
+	        List<List<String>> listOfLists = Arrays.asList(
+	            Arrays.asList("Ali", "Mona"),
+	            Arrays.asList("Ahmed", "Sara"),
+	            Arrays.asList("Omar", "Laila")
+	        );
+
+	        List<String> flattenedList = listOfLists.stream()
+	                                                .flatMap(List::stream) 
+	                                                .collect(Collectors.toList());
+
+	        System.out.println("Flattened List: " + flattenedList);
+
+	}
+}

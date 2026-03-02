@@ -1,0 +1,16 @@
+import java.util.List;
+import java.util.Arrays;
+
+/*Task 15 :Count how many numbers are positive in a list */
+
+public class Main {
+	public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(10, 5, 3, 7, 2, 10, 5, 8, 9, 0, -3, 4);
+
+        long count = numbers.stream().filter(n -> n > 0).count();           
+
+        System.out.println( count);
+
+
+	}
+}

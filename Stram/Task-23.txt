@@ -1,0 +1,27 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+/*Task 23 : Filter a list of Optionals and collect non-empty values. */
+
+public class Main {
+	public static void main(String[] args) {
+		List<Optional<String>> optionals = Arrays.asList(
+	            Optional.of("Ali"),
+	            Optional.empty(),
+	            Optional.of("Mona"),
+	            Optional.of("Ahmed"),
+	            Optional.empty(),
+	            Optional.of("Sara")
+	        );
+
+	        List<String> nonEmptyValues = optionals.stream()
+	                                               .filter(Optional::isPresent)  
+	                                               .map(Optional::get)            
+	                                               .collect(Collectors.toList());
+
+	        System.out.println("Non-empty values: " + nonEmptyValues);
+
+	}
+}
