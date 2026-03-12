@@ -1,0 +1,93 @@
+--1. Find all employee where the emp_id is within a certain range  100  and  105.
+select * 
+from employees
+where EMPLOYEE_ID between 100 and 105
+;
+--2. Find all employee that belong to a specific set of emp_id  151 , 152, 153, 154 , 155.
+select * 
+from employees
+where EMPLOYEE_ID IN (151 , 152, 153, 154 , 155)
+;
+
+--3. Retrieve all employee where the employee first_name starts with the letter 'P' OR 'p'
+select * 
+from employees
+where lower(FIRST_NAME) like 'p%' 
+;
+
+--4. Retrieve all employee where the employee first_name end with the letter 'A' OR 'a'
+select * 
+from employees
+where lower(FIRST_NAME) like '%a' 
+;
+
+--5. Retrieve all employee where the employee first_name with the letter 'A' OR 'a'
+select * 
+from employees
+where lower(FIRST_NAME) like '%a%' 
+;
+
+--6. Retrieve all employee where the employee first_name  third char with the letter 'e' OR 'E'
+select * 
+from employees
+where lower(FIRST_NAME) like '__e%' 
+;
+
+--7. Retrieve all employees who don't have a manager assigned (i.e., manager_id is NULL).
+select * 
+from employees
+where MANAGER_ID is null
+;
+
+--8. Find all employees who have a manager assigned.
+select * 
+from employees
+where MANAGER_ID is not null
+;
+
+--9. Insert a new employee without assigning a manager (NULL value for manager_id).
+insert into  employees
+values (EMPLOYEES_SEQ.nextval , 'Ahmed' , 'Adel' ,'ahmedadel5050@gmail.com' , '01011800571', sysdate , 'IT_PROG' , 2000 , 0.02 , null , 50)
+;
+commit;
+
+--10. Find all employees who work either in the 'AD_VP' JOB_ID or the 'IT_PROG' JOB_ID.
+select * 
+from employees
+where JOB_ID IN ('AD_VP' , 'IT_PROG')
+;
+--11. Retrieve all employees sorted by their last_name in ascending order.
+select * 
+from employees
+order by last_name 
+;
+
+--12. Retrieve all employees sorted by their hire_date in descending order.
+select * 
+from employees
+order by hire_date desc 
+;
+
+--13. Sort employees first by department in ascending order and then by salary in descending order within each department_id.
+select * 
+from employees
+order by DEPARTMENT_ID , SALARY desc 
+;
+--14. Retrieve all employees with their last_name in lowercase
+select EMPLOYEE_ID, FIRST_NAME, lower(LAST_NAME ) as LAST_NAME
+from employees
+;
+--15. Retrieve all employees with their first_name in uppercase.
+select EMPLOYEE_ID, upper(FIRST_NAME) as FIRST_NAME, LAST_NAME  
+from employees
+;
+
+--16. Retrieve all employees with their first_name and last_name in title case (first letter capitalized).
+select EMPLOYEE_ID, INITCAP(FIRST_NAME) as FIRST_NAME, INITCAP(LAST_NAME)   as LAST_NAME
+from employees
+;
+--17. Find employees whose last_name is 'smith', regardless of the case.
+select * 
+from employees
+where lower(last_name) ='smith' 
+;
