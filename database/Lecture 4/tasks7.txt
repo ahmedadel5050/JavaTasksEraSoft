@@ -1,0 +1,244 @@
+--1. Character Functions – Part 3 (TRIM, LTRIM, RTRIM)
+--Create a table customers with a full_name column. Insert names with extra spaces at the beginning and/or end.
+
+ Create the CUSTOMERS tableCREATE TABLE CUSTOMERS (
+    id        NUMBER ,
+    full_name VARCHAR2(100)
+);
+
+INSERT INTO CUSTOMERS (id, full_name) VALUES (1, '   Ahmed   ');
+INSERT INTO CUSTOMERS (id, full_name) VALUES (2, '  Sara');
+INSERT INTO CUSTOMERS (id, full_name) VALUES (3, 'Omar   ');
+INSERT INTO CUSTOMERS (id, full_name) VALUES (4, '   Mona   ');
+
+
+-- Write a query to remove both leading and trailing spaces from the names using TRIM.
+
+SELECT 
+    id,
+    TRIM(full_name) AS cleaned_name
+FROM CUSTOMERS;
+
+
+--Display only the names with leading spaces removed using LTRIM.
+SELECT 
+    id,
+    LTRIM(full_name) AS name_no_leading_spaces
+FROM CUSTOMERS;
+
+--Display only the names with trailing spaces removed using RTRIM.
+SELECT 
+    id,
+    RTRIM(full_name) AS name_no_trailing_spaces
+FROM CUSTOMERS;
+
+--Trim specific characters (e.g., $, *, or #) from both sides of a given string.
+SELECT 
+    TRIM('*' FROM '**Welcome**') AS txt,
+FROM dual;
+
+----------------------
+--2. Character Functions – Part 4 (REPLACE, LPAD, RPAD)
+--Replace all occurrences of the letter 'o' with '0' in the word “promotion”.
+SELECT 
+    REPLACE('promotion', 'o', '0') AS updated_word
+FROM dual;
+
+--Replace the word “basic” with “advanced” in the sentence “This is a basic course”.
+SELECT 
+    REPLACE('This is a basic course', 'basic', 'advanced') AS updated_sentence
+FROM dual;
+
+
+--Create a departments table with dept_name column. Insert at least 3 department names.
+CREATE TABLE DEPARTMENTS (
+    id        NUMBER PRIMARY KEY,
+    dept_name VARCHAR2(100) UNIQUE
+);
+
+INSERT INTO DEPARTMENTS (id, dept_name) VALUES (1, 'Human Resources');
+INSERT INTO DEPARTMENTS (id, dept_name) VALUES (2, 'Finance');
+INSERT INTO DEPARTMENTS (id, dept_name) VALUES (3, 'Information Technology');
+
+--Format each department name to 15 characters by padding with ‘*’ on the left using LPAD.
+SELECT 
+    id,
+    LPAD(dept_name, 15, '*') AS padded_dept_name
+FROM DEPARTMENTS;
+
+--Format each department name to 15 characters by padding with ‘-’ on the right using RPAD.
+SELECT 
+    id,
+    RPAD(dept_name, 15, '-') AS padded_dept_name
+FROM DEPARTMENTS;
+
+--------------------------------
+--3. TO_CHAR Function
+--Display the current date in the format DD-MON-YYYY.
+SELECT 
+    TO_CHAR(SYSDATE, 'DD-MON-YYYY') AS current_date
+FROM dual;
+
+--Display the current date in the format Day, Month YYYY.
+SELECT 
+    TO_CHAR(SYSDATE, 'Month YYYY') AS current_date
+FROM dual;
+
+--Convert a number to a formatted string with commas and two decimal places using TO_CHAR.
+SELECT 
+    TO_CHAR(1234567.89, '9,999,999.99') AS my_num
+FROM dual;
+
+--Format an employee’s salary to include a currency symbol using TO_CHAR.
+SELECT 
+    TO_CHAR(salary, '$99,999.99') AS sal
+FROM employees;
+
+--Display system date in the format: YYYY/MM/DD HH24:MI:SS.
+SELECT 
+    TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS') AS formatted_date
+FROM dual;
+
+
+----------------------------------------
+--4. Oracle Conditional Expressions – CASE Expressions
+--Create a students table with name and score columns. Insert at least 5 records.
+-- Create the STUDENTS table
+CREATE TABLE STUDENTS (
+    id    NUMBER PRIMARY KEY,
+    name  VARCHAR2(100),
+    score NUMBER(5,2)
+);
+
+-- Insert sample student records
+INSERT INTO STUDENTS (id, name, score) VALUES (1, 'Ahmed', 85);
+INSERT INTO STUDENTS (id, name, score) VALUES (2, 'Sara', 92);
+INSERT INTO STUDENTS (id, name, score) VALUES (3, 'Omar', 76);
+INSERT INTO STUDENTS (id, name, score) VALUES (4, 'Mona', 88);
+INSERT INTO STUDENTS (id, name, score) VALUES (5, 'Youssef', 69);
+
+--Write a query using CASE to assign grades based on the score:
+--90 and above: A
+--80–89: B
+--70–79: C
+--Below 70: F
+SELECT 
+    id,
+    name,
+    score,
+    CASE
+        WHEN score >= 90 THEN 'A'
+        WHEN score BETWEEN 80 AND 89 THEN 'B'
+        WHEN score BETWEEN 70 AND 79 THEN 'C'
+        ELSE 'F'
+    END AS grade
+FROM STUDENTS;
+
+--Modify the query to display “Pass” if score is 60 or more, otherwise “Fail”.
+SELECT 
+    id,
+    name,
+    score,
+    CASE
+        WHEN score >= 90 THEN 'Pass'
+        ELSE 'Fail'
+    END AS grade
+FROM STUDENTS;
+
+--Use CASE to display a message for each student:
+--"Excellent" for A, "Good" for B, "Average" for C, and "Needs Improvement" for F.
+
+SELECT 
+    id,
+    name,
+    score,
+    CASE
+        WHEN score >= 90 THEN 'Excellent'
+        WHEN score BETWEEN 80 AND 89 THEN 'Good'
+        WHEN score BETWEEN 70 AND 79 THEN 'Average'
+        ELSE 'Needs Improvement'
+    END AS performance_message
+FROM STUDENTS;
+
+
+--Write a CASE expression using system date to return the name of the day (e.g., “Today is Monday”).
+SELECT 
+    CASE TO_CHAR(SYSDATE, 'DY')
+        WHEN 'MON' THEN 'Today is Monday'
+        WHEN 'TUE' THEN 'Today is Tuesday'
+        WHEN 'WED' THEN 'Today is Wednesday'
+        WHEN 'THU' THEN 'Today is Thursday'
+        WHEN 'FRI' THEN 'Today is Friday'
+        WHEN 'SAT' THEN 'Today is Saturday'
+        WHEN 'SUN' THEN 'Today is Sunday'
+    END AS day_message
+FROM dual;
+
+------------------------------
+--5. Oracle Conditional Expressions – DECODE Function
+--Use DECODE to return grade letters ('A', 'B', 'C', 'F') based on specific score values (e.g., 100 = A, 90 = B, etc.).
+SELECT 
+    id,
+    name,
+    score,
+    DECODE(score,
+           100, 'A',
+           90,  'B',
+           80,  'C',
+           70,  'F',
+           'No Grade') AS grade
+FROM STUDENTS;
+
+--Create a status_log table with a status_code column containing values like ‘N’, ‘I’, ‘C’.
+CREATE TABLE STATUS_LOG (
+    id          NUMBER ,
+    status_code CHAR(1) 
+);
+
+INSERT INTO STATUS_LOG (id, status_code) VALUES (1, 'N'); 
+INSERT INTO STATUS_LOG (id, status_code) VALUES (2, 'I'); 
+INSERT INTO STATUS_LOG (id, status_code) VALUES (3, 'C'); 
+
+--Use DECODE to convert:
+--‘N’ → ‘New’
+--‘I’ → ‘In Progress’
+--‘C’ → ‘Completed’
+SELECT 
+    id,
+    status_code,
+    DECODE(status_code,
+           'N', 'New',
+           'I', 'In Progress',
+           'C', 'Completed',
+           'Unknown') AS status_message
+FROM STATUS_LOG;
+
+--Use DECODE to check if a product’s quantity is 0, and display “Out of Stock”, otherwise “Available”.
+SELECT 
+    product_id,
+    product_name,
+    quantity,
+    DECODE(quantity,
+           0, 'Out of Stock',
+           'Available') AS stock_status
+FROM PRODUCTS;
+
+--Write a query using DECODE to display a bonus:
+--If department is ‘HR’ → 500
+--If department is ‘IT’ → 1000
+--If department is ‘Sales’ → 1500
+--Else → 300
+SELECT 
+    e.employee_id ,
+    e.LAST_NAME,
+    d.department_name,
+    DECODE(department_name,
+           'HR',    500,
+           'IT',    1000,
+           'Sales', 1500,
+           300) AS bonus
+FROM EMPLOYEES e 
+    join departments  d
+        on e.department_id = d.department_id
+        ;
+

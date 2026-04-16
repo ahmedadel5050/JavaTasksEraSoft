@@ -1,0 +1,34 @@
+-- Q1. Use DECODE to achieve the same result as the CASE example above.
+SELECT 
+    name,
+    marks,
+    DECODE(
+        TRUNC(marks/10),
+        9, 'A',   -- 90–99
+        10, 'A',  -- 100
+        8, 'B',   -- 80–89
+        7, 'C',   -- 70–79
+        'F'       -- else
+    ) AS grade
+FROM STUDENTS;
+
+
+-- Q2. Create a table ORDERS with a column status ('P', 'S', 'D').
+-- Create the table
+CREATE TABLE ORDERS (
+    order_id NUMBER ,
+    status CHAR(1) CHECK (status IN ('P', 'S', 'D'))
+);
+
+
+-- Q3. Use DECODE to display full form of status:
+--     'P' => 'Pending', 'S' => 'Shipped', 'D' => 'Delivered'
+SELECT 
+    order_id,
+    status,
+    DECODE(status,
+           'P', 'Pending',
+           'S', 'Shipped',
+           'D', 'Delivered',
+           'Unknown') AS status_full
+FROM ORDERS;
