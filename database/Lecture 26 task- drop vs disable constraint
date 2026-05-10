@@ -1,0 +1,32 @@
+DROP CONSTRAINT and DISABLE CONSTRAINT do not achieve the same goal. 
+
+What is the main difference?
+
+Exists in data dictionary?
+Drop constraint- Completely removed disable constraint -Still exists but inactive
+After drop constraint, it cannot be re enables unlike disable.
+Drop is Permanent and disable is temp
+Performance, drop is better as disable will keeap Tiny overhead to maintain metadata.
+
+When should we use DROP CONSTRAINT`?
+Use it when the business rule is permanently gone or you want to replace the constraint with a different definition.
+Like 
+1.  Business rule changed You had CHECK (age >= 18)  but now allow 16+.
+   ALTER TABLE students DROP CONSTRAINT chk_age;
+   ALTER TABLE students ADD CONSTRAINT chk_age CHECK (age >= 16);
+
+
+Use Disable when you need to temporarily break the rule, usually for bulk operations, then turn it back on.
+
+*Practical examples:*
+
+1. Bulk data load: Loading 10M rows into sales. FK checks would make it  slower.
+
+3.Fixing bad data: You have existing rows that violate a new CHECK constraint you want to add.
+   
+Key rule of thumb
+
+1. Need to change the rule definition DROP` + ADD
+2. Need to temporarily bypass the rule? DISABLE + ENABLE
+
+ with ENABLE  By default ENABLE will validate all existing data. If any row violates it, the ENABLE fails. Use ENABLE NOVALIDATE if you want to enforce only for future rows but keep the bad historical data.
