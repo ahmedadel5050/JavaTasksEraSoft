@@ -1,0 +1,110 @@
+--Task 2
+--in hr scema there exist 
+--- JOBS Table and JOB_HISTORY Table
+--
+--Please apply 
+
+--- natural join
+SELECT 
+       job_id,
+       job_title,
+       min_salary,
+       max_salary,
+       employee_id,
+       start_date,
+       end_date,
+       department_id
+FROM jobs
+NATURAL JOIN job_history;
+
+--- join with  using keyword with column job_id
+SELECT 
+       job_id,
+       job_title,
+       min_salary,
+       max_salary,
+       employee_id,
+       start_date,
+       end_date,
+       department_id
+FROM jobs
+JOIN job_history
+USING (job_id)
+;
+
+--- join with  on keyword with column job_id
+SELECT 
+       j.job_id,
+       j.job_title,
+       j.min_salary,
+       j.max_salary,
+       h.employee_id,
+       h.start_date,
+       h.end_date,
+       h.department_id
+FROM jobs j
+JOIN job_history h
+ON j.job_id = h.job_id
+;
+
+
+--- inner join with 
+SELECT 
+       j.job_id,
+       j.job_title,
+       j.min_salary,
+       j.max_salary,
+       h.employee_id,
+       h.start_date,
+       h.end_date,
+       h.department_id
+FROM jobs j
+INNER JOIN job_history h
+ON j.job_id = h.job_id
+;
+
+--- left join with 
+SELECT 
+      j.job_id,
+       j.job_title,
+       j.min_salary,
+       j.max_salary,
+       h.employee_id,
+       h.start_date,
+       h.end_date,
+       h.department_id
+FROM jobs j
+LEFT JOIN job_history h
+ON j.job_id = h.job_id
+;
+
+
+--- right join with 
+SELECT 
+       j.job_id,
+       j.job_title,
+       j.min_salary,
+       j.max_salary,
+       h.employee_id,
+       h.start_date,
+       h.end_date,
+       h.department_id
+FROM jobs j
+RIGHT JOIN job_history h
+ON j.job_id = h.job_id
+;
+
+--- fulljoin with 
+SELECT 
+       j.job_id,
+       j.job_title,
+       j.min_salary,
+       j.max_salary,
+       h.employee_id,
+       h.start_date,
+       h.end_date,
+       h.department_id
+FROM jobs j
+;
+FULL OUTER JOIN job_history h
+ON j.job_id = h.job_id;
