@@ -1,0 +1,73 @@
+Task 4
+Create user with yourname 
+
+you must add grant to do the next
+1- create session
+2 - create table Student with id , name
+3 - insert, select , update , delete
+go to hr schema and do the next
+- insert on Student table
+ select from Student table
+, update , delete
+4 - REVOKE all previllege 
+
+-- Connect as sysadmin 
+CREATE USER ahmed IDENTIFIED BY abc_123 quota 100M on USERS;
+GRANT CREATE SESSION TO ahmed;
+GRANT CREATE TABLE TO ahmed;
+GRANT INSERT ANY TABLE TO ahmed;
+GRANT SELECT ANY TABLE TO ahmed;
+GRANT UPDATE ANY TABLE TO ahmed;
+GRANT DELETE ANY TABLE TO ahmed;
+
+
+
+-- Connect as ahmed 
+CREATE TABLE Student (
+    id   NUMBER PRIMARY KEY,
+    name VARCHAR2(100)
+);
+INSERT INTO Student (id, name) VALUES (1, 'Ahmed');
+INSERT INTO Student (id, name) VALUES (2, 'Sara');
+commit;
+
+SELECT * FROM Student;
+
+UPDATE Student
+SET name = 'Omar'
+WHERE id = 1;
+commit;
+
+DELETE FROM Student
+WHERE id = 2;
+commit;
+
+
+grant select on Student to HR; 
+grant insert on Student to HR; 
+grant update on Student to HR; 
+grant delete on Student to HR; 
+
+
+-- Connect as HR 
+SELECT * FROM ahmed.Student;
+
+INSERT INTO ahmed.Student (id, name) VALUES (3, 'Karla');
+
+UPDATE ahmed.Student
+SET name = 'Mona'
+WHERE id = 3;
+
+DELETE FROM ahmed.Student
+WHERE id = 3;
+
+commit;
+
+-- Connect as sysadmin 
+REVOKE CREATE SESSION FROM ahmed;
+REVOKE CREATE TABLE FROM ahmed;
+REVOKE INSERT ANY TABLE FROM ahmed;
+REVOKE SELECT ANY TABLE FROM ahmed;
+REVOKE UPDATE ANY TABLE FROM ahmed;
+REVOKE DELETE ANY TABLE FROM ahmed;
+
