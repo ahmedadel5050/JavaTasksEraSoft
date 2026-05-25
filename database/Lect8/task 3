@@ -1,0 +1,57 @@
+task 3
+please use sub-query 
+to get JOB_HISTORY that job_id on this values 
+
+AD_ASST
+FI_MGR
+FI_ACCOUNT
+AC_MGR
+AC_ACCOUNT
+SA_MAN
+SA_REP
+PU_MAN
+
+and DEPARTMENTS with DEPARTMENT_NAME on this values 
+
+Administration
+Marketing
+Purchasing
+Human Resources
+Shipping
+
+
+
+
+
+
+
+
+SELECT 
+       h.employee_id,
+       h.job_id,
+       h.start_date,
+       h.end_date,
+       h.department_id,
+       d.department_name
+FROM 
+    job_history h
+    JOIN departments d
+        ON h.department_id = d.department_id
+WHERE h.job_id IN (
+                SELECT job_id
+                FROM jobs
+                WHERE job_id IN ( 'AD_ASST', 'FI_MGR', 'FI_ACCOUNT',
+                    'AC_MGR', 'AC_ACCOUNT', 'SA_MAN',
+                    'SA_REP', 'PU_MAN'
+                )
+            )
+AND d.department_id IN (
+                SELECT department_id
+                FROM departments
+                WHERE department_name IN (
+                    'Administration', 'Marketing',
+                    'Purchasing', 'Human Resources',
+                    'Shipping'
+                )
+                );
+
